@@ -30,7 +30,7 @@ RUN LIBPQXX_VERSION=`curl --silent "https://api.github.com/repos/jtv/libpqxx/rel
     mv /src/libpqxx-* /src/libpqxx && \
     rm -rf /tmp/libpqxx.tar.gz && \
     cd /src/libpqxx && \
-    /src/libpqxx/configure --disable-documentation --with-pic && \
+    /src/libpqxx/configure CXXFLAGS=-std=c++17 --disable-documentation --with-pic && \
     make && \
     make install
 
@@ -58,8 +58,7 @@ RUN ZERO_UI_VERSION=`curl --silent "https://api.github.com/repos/dec0dOS/zero-ui
     mv /src/zero-ui-* /src/zero-ui && \
     rm -rf /tmp/zero-ui.tar.gz && \
     cd /src/zero-ui && \
-    yarn install && \
-    yarn installDeps && \
+    yarn install && \    
     yarn build
 
 FROM centos:8
